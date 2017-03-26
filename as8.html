@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+<script src="jquery-latest.min.js"></script>
+
+<title>Assignment 8</title>
+<script src="jquery.min.js"></script>
+<script src="jquery.min.js"></script>
+<script>
+
+var InternetText;
+var Time1;
+var Time2;
+var Temp1;
+var Temp2;
+
+
+$(document).ready(function(){
+  var mousedCity = "Kansas City";
+  var queryText = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + mousedCity + "') and u='c'"
+  $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + queryText + "&format=json").success(function(data){
+  InternetText="https://query.yahooapis.com/v1/public/yql?q=" + queryText + "&format=json";
+   Time1 = "The date/time in " + mousedCity + " is: " + data.query.results.channel.item.condition.date;
+   $('#temp1').html("The date/time in " + mousedCity + " is: " + data.query.results.channel.item.condition.date);
+  });
+});
+
+$(document).ready(function(){
+  var mousedCity = "Kansas City";
+  var queryText = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + mousedCity + "') and u='c'"
+  $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + queryText + "&format=json").success(function(data){
+   Temp1 = "The temperature in " + mousedCity + " is " + data.query.results.channel.item.condition.temp + "°C";
+   $('#temp1').html("The temperature in " + mousedCity + " is " + data.query.results.channel.item.condition.temp + "°C");
+  });
+});
+$(document).ready(function(){
+  var mousedCity = " Houston ";
+  var queryText = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + mousedCity + "') and u='c'"
+  $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + queryText + "&format=json").success(function(data){
+  InternetText="https://query.yahooapis.com/v1/public/yql?q=" + queryText + "&format=json";
+   Time2 = "The date/time in " + mousedCity + " is: " + data.query.results.channel.item.condition.date;
+   $('#temp1').html("The date/time in " + mousedCity + " is: " + data.query.results.channel.item.condition.date);
+  });
+});
+
+$(document).ready(function(){
+  var mousedCity = "Houston";
+  var queryText = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + mousedCity + "') and u='c'"
+  $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + queryText + "&format=json").success(function(data){
+   Temp2 = "The temperature in " + mousedCity + " is " + data.query.results.channel.item.condition.temp + "°C";
+   $('#temp1').html("The temperature in " + mousedCity + " is " + data.query.results.channel.item.condition.temp + "°C");
+  });
+});
+
+
+$(document).ready(function(){
+	$("#KC").mouseenter(function(){
+        $("#Temp").text(Temp1);
+    });
+    $("#KC").mouseleave(function(){
+        $("#Temp").text("Mouse over the image to update the temperature.");
+    });
+	$("#KC").mouseenter(function(){
+        $("#Time").text(Time1);
+    });
+    $("#KC").mouseleave(function(){
+        $("#Time").text("Mouse over the image to update the time.");
+    });
+
+    $("#Dallas").mouseenter(function(){
+        $("#Temp").text(Temp2);
+    });
+    $("#Dallas").mouseleave(function(){
+        $("#Temp").text("Mouse over the image to update the temperature.");
+    });
+    $("#Dallas").mouseenter(function(){
+        $("#Time").text(Time2);
+    });
+    $("#Dallas").mouseleave(function(){
+        $("#Time").text("Mouse over the image to update the time.");
+    });
+});
+
+</script>
+<style type="text/css">
+.auto-style1 {
+	color: #0000FF;
+	font-size: large;
+}
+</style>
+</head>
+ 
+
+<body style="background-color: #B3F0C5">
+
+<h1>Assignment 8</h1>
+
+<table>
+	<tr><td>
+	<img src="kc1.jpg" id="KC" width="500" height="300"></img><br>;
+	<strong>&nbsp;Kansas City, Missouri</strong></td>
+	<td>
+	<img src="houston.jpg" id="Dallas" width="500" height="300"></img><br>;
+		<strong>&nbsp;Houston, Texas</strong></td>
+	</tr>
+</table>
+
+<p id="Temp">Temperature: Hover over an image to get the current temperature</p>
+<p id="Time">Time: Hover over an image to get the time</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="auto-style1"><strong><a href="as.html">Return to the assignment 
+page.....</a></strong></p>
+
+</body>
+
+</html>
